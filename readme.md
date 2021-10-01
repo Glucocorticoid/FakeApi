@@ -11,14 +11,20 @@
 
 Для тестирования POST-запросов по адресу http://localhost:5000/report/user_statistics можно использовать, например,
 консоль Package Manager из Visual Studio, путем исполнения следующей команды:
+
 	PM> Invoke-RestMethod http://localhost:5000/report/user_statistics -Method POST -Body (@{user_id = "TestUserID"; timeFrom = "2021-07-26T00:00:00"; timeTo = "2021-07-29T00:00:00"  } | ConvertTo-Json) -ContentType "application/json; charset=utf-8"
 
 В качестве ответа на корректные исходные данные в консоль должен поступить ответ в виде GUID идентификатора:
+
 	56029acf-663c-4bca-b63d-9a157c73c100
 
-Для тестирования GET-запросов по адресу можно использовать например, интенет-браузер с указанием в адресной строке браузера адреса для запроса:
+Для тестирования GET-запросов по адресу http://localhost:5000/report/info можно использовать, например, 
+интенет-браузер с указанием в адресной строке браузера адреса для запроса:
+
 	http://localhost:5000/report/info?query=56029acf-663c-4bca-b63d-9a157c73c100
+	
 В качестве ответа на исходные данные в окне браузера должен отобразиться JSON-объект, например:
+
 	{"query":"56029acf-663c-4bca-b63d-9a157c73c100","percent":100,"result":{"user_id":"TestUserID","count_sign_in":"12"}}
 
 # Требования и допущения
